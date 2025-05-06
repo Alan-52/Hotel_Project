@@ -149,3 +149,48 @@ def ver_reservas(usuario_id):
         print("\nNo tienes reservas realizadas.")
 
     conn.close()
+
+# Función principal
+def main():
+    while True:
+        print("\n ¡Bienvenido a Hotel Euforia! ")
+        print("\n1. Iniciar sesión")
+        print("2. Registrarse")
+        print("3. Salir del programa")
+        opcion = input("Seleccione una opción: ")
+
+        if opcion == '1':
+            user = login()
+        elif opcion == '2':
+            registrar_usuario()
+            continue  # Volver al menú principal después del registro
+        elif opcion == '3':
+            print("Saliendo del programa...")
+            sys.exit()  # Termina la ejecución del programa
+        else:
+            print("Opción inválida.")
+            continue
+
+        if user:
+            while True:
+                print("\n--- Menú ---")
+                print("1. Ver habitaciones")
+                print("2. Realizar una reserva")
+                print("3. Ver reservas")
+                print("4. Salir al menú principal")
+                opcion = input("Seleccione una opción: ")
+
+                if opcion == '1':
+                    ver_habitaciones()
+                elif opcion == '2':
+                    realizar_reserva(user[0])
+                elif opcion == '3':
+                    ver_reservas(user[0])
+                elif opcion == '4':
+                    print("Regresando al menú principal...")
+                    break
+                else:
+                    print("Opción inválida, por favor intente nuevamente.")
+
+if __name__ == "__main__":
+    main()
